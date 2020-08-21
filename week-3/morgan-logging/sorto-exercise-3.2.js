@@ -1,3 +1,12 @@
+/*
+
+Title: Exercise 3.2 - Logging
+Author: Arlix Sorto
+Date:8/20/2020
+Modified:
+Description: Logging
+
+*/
 var express = require("express");
 var http = require("http");
 var path = require("path");
