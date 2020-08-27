@@ -1,0 +1,11 @@
+{
+  "name": "HTTP-Status-Codes",
+  "author": "Arlix Sorto",
+  "private": true,
+  "scripts": {
+    "start": "node sorto-exercise-4.3.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
