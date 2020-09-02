@@ -1,0 +1,12 @@
+{
+  "name": "pug-template",
+  "author": "Arlix Sorto",
+  "private": true,
+  "scripts": {
+    "start": "node sorto-exercise-5.3.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^3.0.0"
+  }
+}
