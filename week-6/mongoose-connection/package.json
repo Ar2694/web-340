@@ -1,0 +1,13 @@
+{
+  "name": "mongoose-connection",
+  "author": "Arlix Sorto",
+  "private": true,
+  "scripts": {
+    "start": "node sorto-exercise-6.3.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5",
+    "morgan": "^1.10.0"
+  }
+}
