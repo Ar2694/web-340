@@ -1,3 +1,11 @@
+/*
+============================================
+; Title: Exercise 6.4
+; Author: Arlix Sorto
+; Date: 13 September 2020
+; Description: Milestone 2
+;===========================================
+*/
 var express = require("express");
 var http = require("http");
 var path = require("path");
