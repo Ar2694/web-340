@@ -1,0 +1,76 @@
+body {
+  background: url("/images/businessBG.jpg") no-repeat;
+  background-size: cover;
+}
+.btn{
+  color: #fff;
+  background-color: #615f5f;
+  border: none;
+}
+.btn:hover {
+  background-color: #858484;
+  border: none;
+}
+nav {
+  padding: 0 !important;
+    margin-top: 30px;
+}
+nav .container {
+  background-color: rgba(255,255,255,0.80);
+  padding: 10px;
+  border-bottom: 1px solid #636363;
+}
+nav a {
+  color: rgba(0,0,0,0.39)!important;
+  font-weight: 500;
+}
+nav a:hover,
+nav .active a {
+  color: #000000!important;
+  text-decoration: underline!important;
+}
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+  color: #000000;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 0;
+  border-radius: 0;
+
+  margin-bottom: 0;
+}
+.jumbotron .container {
+  background-color: rgba(255,255,255,0.80);
+  border-bottom: 1px solid #636363;
+  height: 250px;
+  padding-top: 100px;
+}
+main > .container {
+  background-color: rgba(255,255,255,0.80);
+  min-height: 150px;
+  border-bottom: 1px solid #636363;
+}
+
+main .button-container {
+  padding: 70px 50px;
+
+}
+.container.view,
+.container.new{
+  padding:30px 25px 50px 25px ;
+}
+
+.container.view h2,
+.container.new h2{
+  text-align: center;
+  margin-bottom: 25px;
+}table{
+  background: #fff!important;
+}
+
+footer .container {
+  background-color: rgba(255,255,255,0.80);
+
+  padding: 15px 25px;
+}

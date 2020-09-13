@@ -1,25 +1,27 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
+<nav class="navbar navbar-expand-sm navbar-dark">
+<div class="container">
   <ul class="navbar-nav">
 
-      <li class="nav-item active">
+  <li class="nav-item <% if(homeActive){ %>active<%}%>">
 
-        <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="/">Home</a>
 
-      </li>
+    </li>
 
-      <li class="nav-item">
+    <li class="nav-item <% if(newActive){ %>active<%}%>" >
 
-        <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="/new">Add Employee</a>
 
-      </li>
+    </li>
 
-      <li class="nav-item">
+    <li class="nav-item <% if(viewActive){ %>active<%}%>" >
 
-          <a class="nav-link" href="#">Contact Us</a>
+        <a class="nav-link" href="/view">View Employees</a>
 
-      </li>
+    </li>
 
- </ul>
+</ul>
+</div>
+
 
 </nav>
