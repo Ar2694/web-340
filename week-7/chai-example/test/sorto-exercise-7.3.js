@@ -1,19 +1,20 @@
 /*
 ============================================
-; Title: Exercise 7.2
+; Title: Exercise 7.3
 ; Author: Professor Krasso
 ; Date:   28 February 2019
 ; Modified By Arlix Sorto
 ; Modified Date: 9/20/2020
-; Description: TDD in Action
+; Description: Mocha and Chai
 ;===========================================
 */
-var assert = require("assert");
+var fruits = require("../sorto-fruits");
+var chai = require("chai");
+var assert = chai.assert;
 
-describe("String#split", function(){
-
+describe("fruits", function(){
   it("should return an array of fruits", function(){
-
-    assert(Array.isArray('Apple,Orange,Mango'.split(',')));
+    var f = fruits('Apple,Orange,Mango');
+    assert(Array.isArray(f));
   });
 });
