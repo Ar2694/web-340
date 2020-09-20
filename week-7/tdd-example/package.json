@@ -1,0 +1,13 @@
+{
+  "name": "tdd-example",
+  "author": "Arlix Sorto",
+  "private": true,
+  "scripts": {
+    "test": "mocha"
+
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3"
+  }
+}
