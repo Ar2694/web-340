@@ -3,7 +3,7 @@
 ; Title: Exercise 6.4
 ; Author: Arlix Sorto
 ; Date: 13 September 2020
-; Description: Milestone 2
+; Description: Milestone 4
 ;===========================================
 */
 var express = require("express");
@@ -21,28 +21,26 @@ var csrf = require("csurf");
 /*** Express use */
 //Start the express app
 var app = express();
-app.use(bodyParser.urlencoded({
-
-  extended: true
-}));
-
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 //Set Protections
-var csrfProtection = csrf({cookie: true});
+var csrfProtection = csrf({ cookie: true });
 app.use(helmet.xssFilter());
 app.use(cookieParser());
 app.use(csrfProtection);
-app.use(function(req, res, next){
-
-   var token = req.csrfToken();
-  res.cookie('XSRF-TOKEN', token);
+app.use(function (req, res, next) {
+  var token = req.csrfToken();
+  res.cookie("XSRF-TOKEN", token);
   res.locals.csrfToken = token;
 
   next();
 });
 //Use public directory
-app.use(express.static(__dirname + '/public'));
-
+app.use(express.static(__dirname + "/public"));
 
 //Use logger
 app.use(logger("short"));
@@ -52,65 +50,84 @@ app.use(logger("short"));
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 
-
 //mLab connection
-var mongoDB = "mongodb+srv://admin:admin@buwebdev-cluster-1.vumob.mongodb.net/<dbname>?retryWrites=true&w=majority";
-mongoose.connect(mongoDB,{
-  useMongoClient: true
+var mongoDB =
+  "mongodb+srv://admin:admin@buwebdev-cluster-1.vumob.mongodb.net/ems?retryWrites=true&w=majority";
+mongoose.connect(mongoDB, {
+  useMongoClient: true,
 });
 
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
-db.on("error", console.error.bind(console,"MongoDB connection error: "));
-db.once("open",function(){
+db.on("error", console.error.bind(console, "MongoDB connection error: "));
+db.once("open", function () {
   console.log("Application connected to mLab MongoDB instance");
 });
 
-var employee = new Employee({
-  firstName: "John",
-  lastName: "Doe"
-});
-
-
 //GET requests
-app.get("/", function(req, res){
-  res.render("index" , {
+app.get("/", function (req, res) {
+  res.render("index", {
     title: "Home page",
-    homeActive: true,
-    newActive: false,
-    viewActive: false
-  })
+    active: "home",
+  });
 });
 
+app.get("/list", function (req, res) {
+  Employee.find({}, function (error, employees) {
+    if (error) {
+      throw error;
+    }
 
-app.get("/view", function(req, res){
-  res.render("view" , {
-    title: "View page",
-    homeActive: false,
-    newActive: false,
-    viewActive: true
-  })
+    res.render("list", {
+      title: "View page",
+      active: "view",
+      employees: employees,
+    });
+  });
 });
 
-app.get("/new", function(req, res){
-  res.render("new" , {
+app.get("/new", function (req, res) {
+  res.render("new", {
     title: "New page",
-    homeActive: false,
-    newActive: true,
-    viewActive: false
-  })
+    active: "new",
+  });
 });
 
 //POST request
-app.post("/create", function(request, response) {
-  console.log(request.body);
+app.post("/process", function (req, res) {
+  console.log(req.body);
 
-  response.redirect("/");
+  if (!req.body.firstName && !req.body.lastName && !req.body.email) {
+    res
+      .status(400)
+      .send("Entries must have a first name, last name, and email.");
+    return;
+  }
 
+  var first_name = req.body.firstName;
+  var last_name = req.body.lastName;
+  var _email = req.body.email;
+
+  //create employee model
+  var employee = new Employee({
+    firstName: first_name,
+    lastName: last_name,
+    email: _email,
+  });
+
+  //save
+  employee.save(function (error) {
+    if (error) {
+      throw error;
+    }
+    console.log(first_name + " saved succesfully!");
+  });
+
+  res.redirect("/list");
 });
 
 //Create server
-http.createServer(app).listen(8080, function(){
+http.createServer(app).listen(8080, function () {
   console.log("Application started on port 8080!");
 });

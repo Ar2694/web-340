@@ -1,36 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('header') -%>
+<body>
+  <%- include ('navbar') -%>
+  <main>
 
+<div class="container view">
 
-<div class="container">
-
-  <table class="table">
-    <thead class="thead-dark">
+  <h2>View Employees</h2>
+  <table class="table table-striped">
+    <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
       </tr>
     </thead>
     <tbody>
+      <% if(employees.length) { %>
+        <% var i = 1; %>
+        <% employees.forEach(function(employee) {%>
+
+
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row"><%=i  %> </th>
+        <td><%=employee.firstName %></td>
+        <td><%=employee.lastName %></td>
+        <td><%=employee.email %></td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      <%i++;  %>
+      <% }); %>
+    <% } %>
     </tbody>
   </table>
+  <a href="/new"> <button id="addBtn" class="btn">Add New Employee</button></a>
 
 </div>
+
+</main>
+<%- include ('footer') -%>
+</body>
+
+</html>
+
