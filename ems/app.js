@@ -10,15 +10,45 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 var logger = require("morgan");
-var app = express();
+
 var mongoose = require("mongoose");
 var Employee = require("./models/employee");
 var helmet = require("helmet");
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var csrf = require("csurf");
+
+/*** Express use */
+//Start the express app
+var app = express();
+app.use(bodyParser.urlencoded({
+
+  extended: true
+}));
 
 
+//Set Protections
+var csrfProtection = csrf({cookie: true});
 app.use(helmet.xssFilter());
+app.use(cookieParser());
+app.use(csrfProtection);
+app.use(function(req, res, next){
+
+   var token = req.csrfToken();
+  res.cookie('XSRF-TOKEN', token);
+  res.locals.csrfToken = token;
+
+  next();
+});
+//Use public directory
 app.use(express.static(__dirname + '/public'));
+
+
+//Use logger
 app.use(logger("short"));
+
+/***Express set */
+//Set views path and view engine
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -43,7 +73,7 @@ var employee = new Employee({
 });
 
 
-
+//GET requests
 app.get("/", function(req, res){
   res.render("index" , {
     title: "Home page",
@@ -72,6 +102,15 @@ app.get("/new", function(req, res){
   })
 });
 
+//POST request
+app.post("/create", function(request, response) {
+  console.log(request.body);
+
+  response.redirect("/");
+
+});
+
+//Create server
 http.createServer(app).listen(8080, function(){
   console.log("Application started on port 8080!");
 });
