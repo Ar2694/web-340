@@ -13,11 +13,15 @@ var logger = require("morgan");
 var app = express();
 var mongoose = require("mongoose");
 var Employee = require("./models/employee");
+var helmet = require("helmet");
 
-app.set("views", path.resolve(__dirname, "views"));
+
+app.use(helmet.xssFilter());
 app.use(express.static(__dirname + '/public'));
-app.set("view engine", "ejs");
 app.use(logger("short"));
+app.set("views", path.resolve(__dirname, "views"));
+app.set("view engine", "ejs");
+
 
 //mLab connection
 var mongoDB = "mongodb+srv://admin:admin@buwebdev-cluster-1.vumob.mongodb.net/<dbname>?retryWrites=true&w=majority";
