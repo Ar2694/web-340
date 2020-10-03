@@ -73,6 +73,13 @@ app.get("/", function (req, res) {
   });
 });
 
+app.get("/new", function (req, res) {
+  res.render("new", {
+    title: "New page",
+    active: "new",
+  });
+});
+
 app.get("/list", function (req, res) {
   Employee.find({}, function (error, employees) {
     if (error) {
@@ -87,13 +94,27 @@ app.get("/list", function (req, res) {
   });
 });
 
-app.get("/new", function (req, res) {
-  res.render("new", {
-    title: "New page",
-    active: "new",
+app.get("/view/:firstName/:lastName/:email", function (req, res) {
+  var firstName = req.params.firstName || "";
+  var lastName = req.params.lastName || "";
+  var email = req.params.email || "";
+  console.log(firstName);
+  Employee.find({
+    "firstName":firstName,
+    "lastName": lastName,
+    "email": email
+  }, function (error, employee) {
+    if (error) {
+      throw error;
+    }
+    console.log(employee);
+    res.render("view", {
+      title: "View page",
+      active: "view",
+      employee: employee,
+    });
   });
 });
-
 //POST request
 app.post("/process", function (req, res) {
   console.log(req.body);

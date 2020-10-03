@@ -1,0 +1,56 @@
+<!--/*
+============================================
+; Title: Exercise 9.2
+; Author: Arlix Sorto
+; Date: 03 October 2020
+; Description: Milestone 5
+;===========================================
+*/-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('header') -%>
+<body>
+  <%- include ('navbar') -%>
+  <main>
+<div role="main" class="container">
+
+  <br/><br/>
+
+  <h2>-- Employee Record --</h2>
+
+  <div>
+
+      <div class="form-group">
+
+          <label for="txtFirstName">First Name:</label>
+
+          <input type="text" class="form-control" id="txtFirstName" value="<%= employee[0].firstName %>" name="txtFirstName" />
+      </div>
+      <div class="form-group">
+
+        <label for="txtLastName">Last Name:</label>
+
+        <input type="text" class="form-control" id="txtLastName" value="<%= employee[0].lastName %>" name="txtLastName" />
+    </div>
+    <div class="form-group">
+
+      <label for="txtEmail">Email:</label>
+
+      <input type="text" class="form-control" id="txtEmail" value="<%= employee[0].email %>" name="txtEmail" />
+  </div>
+
+  </div>
+
+  <br /><br />
+
+  <a href="/list"><button id="returnBtn" class="btn">Return to View Employees</button></a>
+
+</div>
+
+</main>
+<%- include ('footer') -%>
+</body>
+
+</html>
+

@@ -8,6 +8,9 @@
 <div class="container view">
 
   <h2>View Employees</h2>
+  <% if(employees.length) { %>
+    <a href="/new"> <button id="addBtn" class="btn">Add New Employee</button></a>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -18,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <% if(employees.length) { %>
+
         <% var i = 1; %>
         <% employees.forEach(function(employee) {%>
 
@@ -28,14 +31,17 @@
         <td><%=employee.firstName %></td>
         <td><%=employee.lastName %></td>
         <td><%=employee.email %></td>
+        <td><a href="/view/<%= employee.firstName %>/<%= employee.lastName %>/<%= employee.email %>">VIEW</a></td>
       </tr>
       <%i++;  %>
       <% }); %>
-    <% } %>
+
     </tbody>
   </table>
-  <a href="/new"> <button id="addBtn" class="btn">Add New Employee</button></a>
+  <% } else { %>
+    No entries! <a href="/new"> <button id="addBtn" class="btn">Add New Employee</button></a>
 
+  <% } %>
 </div>
 
 </main>
