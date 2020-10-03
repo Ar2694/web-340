@@ -5,6 +5,9 @@
   "scripts": {
     "start": "node app.js"
   },
+  "engines": {
+    "node": "12.17.0"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -13,5 +16,13 @@
     "helmet": "^4.1.1",
     "mongoose": "^5.10.6",
     "morgan": "^1.10.0"
-  }
+  },
+  "version": "1.0.0",
+  "description": "EMS",
+  "main": "app.js",
+  "devDependencies": {},
+  "keywords": [
+    "EMS"
+  ],
+  "license": "ISC"
 }
